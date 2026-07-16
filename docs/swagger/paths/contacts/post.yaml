@@ -1,0 +1,55 @@
+tags:
+  - Contacts
+
+summary: Create contact
+
+operationId: createContact
+
+description: Creates a new contact.
+
+security:
+  - bearerAuth: []
+
+requestBody:
+  required: true
+  content:
+    multipart/form-data:
+      schema:
+        type: object
+        required:
+          - name
+          - phoneNumber
+          - contactType
+        properties:
+          name:
+            type: string
+            description: Contact name
+
+          phoneNumber:
+            type: string
+            description: Contact phone number
+
+          email:
+            type: string
+            description: Contact email
+
+          isFavourite:
+            type: boolean
+            description: Is favourite contact
+
+          contactType:
+            type: string
+            enum:
+              - work
+              - home
+              - personal
+            description: Contact type
+
+          photo:
+            type: string
+            format: binary
+            description: Contact photo
+
+responses:
+  '201':
+    description: Successfully created a contact

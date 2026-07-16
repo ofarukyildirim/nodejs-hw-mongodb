@@ -1,0 +1,49 @@
+tags:
+  - Contacts
+
+summary: Get all contacts
+
+operationId: getContacts
+
+description: Returns a list of contacts.
+
+security:
+  - bearerAuth: []
+
+parameters:
+  - in: query
+    name: page
+    required: false
+    schema:
+      type: integer
+      default: 1
+    description: Page number
+
+  - in: query
+    name: perPage
+    required: false
+    schema:
+      type: integer
+      default: 10
+    description: Number of items per page
+
+  - in: query
+    name: sortBy
+    required: false
+    schema:
+      type: string
+    description: Field to sort by
+
+  - in: query
+    name: sortOrder
+    required: false
+    schema:
+      type: string
+      enum:
+        - asc
+        - desc
+    description: Sort order
+
+responses:
+  '200':
+    description: Successfully found contacts
