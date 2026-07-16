@@ -1,0 +1,62 @@
+tags:
+  - Contacts
+
+summary: Update contact
+
+operationId: updateContact
+
+description: Updates an existing contact.
+
+security:
+  - bearerAuth: []
+
+parameters:
+  - in: path
+    name: contactId
+    required: true
+    schema:
+      type: string
+    description: Contact id
+
+requestBody:
+  required: true
+  content:
+    multipart/form-data:
+      schema:
+        type: object
+        properties:
+          name:
+            type: string
+            description: Contact name
+
+          phoneNumber:
+            type: string
+            description: Contact phone number
+
+          email:
+            type: string
+            description: Contact email
+
+          isFavourite:
+            type: boolean
+            description: Is favourite contact
+
+          contactType:
+            type: string
+            enum:
+              - work
+              - home
+              - personal
+            description: Contact type
+
+          photo:
+            type: string
+            format: binary
+            description: Contact photo
+
+responses:
+  '200':
+    description: Successfully updated a contact
+
+  '404':
+    description: Contact not found
